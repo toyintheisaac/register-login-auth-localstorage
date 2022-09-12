@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Register</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Latest compiled JavaScript -->
@@ -18,16 +18,27 @@
             <form   class="bg-light p-5" >
                 <div class="mb-3 mt-3">
                   <label for="uname" class="form-label">Username:</label>
-                  <input type="text" class="form-control" id="uname" placeholder="Enter username" name="uname"  >
-                  <div class="valid-feedback">Valid.</div> 
+                  <input type="text" class="form-control" id="uname" placeholder="Enter username" name="uname" >
+                  <div class="feedback"></div> 
                 </div>
                 <div class="mb-3">
                   <label for="pwd" class="form-label">Password:</label>
-                  <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd"  >
-                  <div class="valid-feedback">Valid.</div>
-                  <div class="invalid-feedback">Please fill out this field.</div>
+                  <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd"  >
+                  <div class="feedback"></div>
                 </div> 
+                <div class="mb-3 mt-3">
+                  <label for="fullname" class="form-label">Full Name:</label>
+                  <input type="text" class="form-control" id="fullname" placeholder="Enter username" name="fullname" >
+                  <div class="feedback"></div>
+                </div>
+                <div class="mb-3 mt-3">
+                  <label for="stack" class="form-label">Stack:</label>
+                  <input type="text" class="form-control" id="stack" placeholder="Enter username" name="stack"  >
+                  <div class="feedback"></div> 
+                </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
+                <a href="users/dashboard.html" class="btn btn-primary">Submit</a>
+                <p class="d-block mt-2"><a href="index.html" class="text-decoration-none">Already have an Account ?</a> </p>
               </form>
         </div>
     </div>
