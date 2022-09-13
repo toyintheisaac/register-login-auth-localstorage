@@ -39,7 +39,7 @@ class RegisterLogin {
             localStorage.setItem('allUsers', newUsers);
                 this.setActiveUser(totalUsers+1);
                 displayMsg('feedback', `<span class='text-success'>User Registered Successfully</span>`);
-                this.userLogin(totalUsers+1);
+                this.userLogin();
             return true;
         }
     }
@@ -88,8 +88,8 @@ class RegisterLogin {
          }
          return false 
     }
-    userLogin(id){
-        let authCheck = new AuthUser(id);
+    userLogin(){
+        let authCheck = new AuthUser();
            if(authCheck.checkActiveUser()){
                 setTimeout(()=>{
                     window.location.href='users/dashboard.html';

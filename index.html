@@ -59,7 +59,11 @@ loginForm.addEventListener('submit',(e)=>{
       checkEmptyInput('password')
       checkUsername('username') 
     }
-})
+});
+let authCheck = new AuthUser();
+    if(authCheck.checkActiveUser()){
+      document.getElementById("loginForm").innerHTML="<div class='alert alert-danger'>You are currently logged in <a href='users/dashboard.html'>My Dashboard</a></div>";
+  }
 </script>
 </body>
 </html>
