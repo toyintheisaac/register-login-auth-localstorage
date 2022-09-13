@@ -23,7 +23,7 @@
                 </div>
                 <div class="mb-3">
                   <label for="password" class="form-label">Password:</label>
-                  <input type="password" class="form-control" id="password" placeholder="Enter password" name="password"  >
+                  <input type="password" class="form-control" id="password" placeholder="Enter password" name="password" onkeyup="checkEmptyInput('password')" >
                   <div ></div>
                 </div>
                 <div class="mb-3 mt-3">
@@ -44,12 +44,10 @@
     </div>
 
 <script src="assets/script.js"></script>
+<script src="assets/auth-check.js"></script>
 <script src="assets/registerlogin.js"></script>
 <script>
-  
-  let registerUser = new RegisterLogin('isaac', 'password'); 
-      registerUser.getLastUserId();
-
+   
 let registerForm = document.querySelector("#registerForm");
     registerForm.addEventListener('submit', (e)=>{
         e.preventDefault();
@@ -60,7 +58,7 @@ let registerForm = document.querySelector("#registerForm");
          
             if(checkEmptyInput('password')==true && checkUsername('username')===true && checkFullName('fullname')===true && checkStack('stack')===true){
                let registerUser = new RegisterLogin(username, password);
-               registerUser.registerUser(fullname, stack);  
+               registerUser.registerUser(fullname, stack);
 
             }else{
               checkEmptyInput('password')

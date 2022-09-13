@@ -22,7 +22,7 @@ function displayMsg(elementID, errorMsg){
         message.innerHTML= errorMsg;
         // clear message after 2 sec 
            setTimeout(()=>{
-                message.nextElementSibling.innerHTML = '';
+                message.innerHTML = '';
             },3000);
     return true;
 }
