@@ -1,4 +1,4 @@
-class RegisterLogin extends AuthUser{
+class RegisterLogin {
     constructor(username, password){
         this.username = username;
         this.password = password;
@@ -13,27 +13,35 @@ class RegisterLogin extends AuthUser{
             this.message = "Registration Successful";
             return true;
         }
-        this.message = "Error Registering User";
+        this.message = this.getMessage()+ "Error Registering User";
         return false;
     }
     setRegister(){
         let allUsers = JSON.parse(localStorage.getItem('allUsers')) || [];
         let totalUsers = this.getLastUserId();
-        let newUser = {
-            username: this.username,
-            password: this.password,
-            fullName: this.fullName,
-            stack:    this.stack,
-            id: totalUsers+1,
-            idHash: totalUsers*10
-        }
-        allUsers.push(newUser);
 
-        let newUsers = JSON.stringify(allUsers);
-        localStorage.setItem('allUsers',newUsers);
-            setActiveUser(totalUsers+1);
-        displayMsg('feedback', `<span class='text-success'>User Registered Successfully</span>`);
-        return true;
+        if(this.checkUsernameExist()==true){
+            this.message = "Username Already Exist";
+                displayMsg('feedback', `<span class='text-danger'>Username Already Exist</span>`);
+            return false;
+        }else{
+            let newUser = {
+                username: this.username,
+                password: this.password,
+                fullName: this.fullName,
+                stack:    this.stack,
+                id: totalUsers+1,
+                idHash: totalUsers*10
+            }
+            allUsers.push(newUser);
+
+            let newUsers = JSON.stringify(allUsers);
+            localStorage.setItem('allUsers', newUsers);
+                this.setActiveUser(totalUsers+1);
+                displayMsg('feedback', `<span class='text-success'>User Registered Successfully</span>`);
+                this.userLogin(totalUsers+1);
+            return true;
+        }
     }
     getLastUserId(){
         let allUsers = JSON.parse(localStorage.getItem('allUsers')) || [];
@@ -43,6 +51,21 @@ class RegisterLogin extends AuthUser{
                 return 0;
             }
     }
+    checkUsernameExist(){
+        let allUsers = JSON.parse(localStorage.getItem('allUsers')) || []; 
+        let newUserCHeck = allUsers.map((element) => {
+            if(element['username']==this.username ){ 
+                   return element['id'];
+                 //  break;
+            }
+        });
+        let newArr = parseInt(newUserCHeck.join(' ').trim()); 
+         if(newArr){
+            return true;
+         }else{ 
+            return false
+         }
+    }
     setActiveUser(id){ 
         if(localStorage.setItem('activeUserId', id)){
             return true;
@@ -51,9 +74,33 @@ class RegisterLogin extends AuthUser{
             return false;
         }
     }
-    /* 
-    checkActiveUser(id, idHash){
-        let activeUser = localStorage.getItem('activeUser');
-    } */
+    userLoginCheck(){
+        let allUsers = JSON.parse(localStorage.getItem('allUsers')) || []; 
+        let newUserCHeck = allUsers.map((element) => {
+            if(element['username']==this.username && element['password']==this.password ){ 
+                   return element['id'];
+            }
+        });
+        let newArr = parseInt(newUserCHeck.join(' ').trim()); 
+         if(newArr){
+            this.setActiveUser(newArr);
+            return true;
+         }
+         return false 
+    }
+    userLogin(id){
+        let authCheck = new AuthUser(id);
+           if(authCheck.checkActiveUser()){
+                setTimeout(()=>{
+                    window.location.href='users/dashboard.html';
+                }, 2000);
+                return displayMsg('feedback', "<div class='alert alert-success py-1'>Login Successfully</div>");
+                
+            }else{
+                this.message = "Wrong User";
+                return window.location.href= 'index.html';
+                
+            }
+    }
 
 }

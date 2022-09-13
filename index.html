@@ -15,23 +15,51 @@
 
     <div class="container mt-5">
         <div class="d-flex justify-content-center"> 
-            <form   class="bg-light p-5" >
+            <form   class="bg-light p-5" id="loginForm">
                 <div class="mb-3 mt-3">
-                  <label for="uname" class="form-label">Username:</label>
-                  <input type="text" class="form-control" id="uname" placeholder="Enter username" name="uname"  >
-                  <div class="valid-feedback">Valid.</div> 
+                  <label for="username" class="form-label">Username:</label>
+                  <input type="text" class="form-control" id="username" placeholder="Enter username" name="username" onkeyup="return checkUsername('username')" >
+                  <div class=""></div> 
                 </div>
                 <div class="mb-3">
-                  <label for="pwd" class="form-label">Password:</label>
-                  <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd"  >
-                  <div class="valid-feedback">Valid.</div> 
+                  <label for="password" class="form-label">Password:</label>
+                  <input type="password" class="form-control" id="password" placeholder="Enter password" name="password" onkeyup="checkEmptyInput('password')"  >
+                  <div ></div> 
                 </div>
+                <div id="feedback"></div>
                 <button type="submit" class="btn btn-primary">Submit</button>
                 <p class="d-block mt-2">click <a href="register.html" class="text-decoration-none">here to create an account</a> </p>
               </form>
         </div>
     </div>
 
-<script src="assets/script.js"></script>
+    <script src="assets/script.js"></script>
+    <script src="assets/auth-check.js"></script>
+    <script src="assets/registerlogin.js"></script>
+<script>
+let loginForm = document.getElementById('loginForm');
+loginForm.addEventListener('submit',(e)=>{
+  e.preventDefault();
+  
+  let username = document.querySelector("#username").value;
+  let password = document.querySelector("#password").value;
+
+    if(checkEmptyInput('password')==true && checkUsername('username')===true ){ 
+      let loginUser = new RegisterLogin(username, password);
+        if(loginUser.userLoginCheck()==true){
+          setTimeout(()=>{
+              window.location.href='users/dashboard.html';
+          }, 2000);
+          displayMsg('feedback', "<div class='alert alert-success py-1'>Login Successfully</div>");
+        }else{
+          displayMsg('feedback', "<div class='alert alert-danger py-1'>Wrong login details</div>");
+        }
+
+    }else{
+      checkEmptyInput('password')
+      checkUsername('username') 
+    }
+})
+</script>
 </body>
 </html>
