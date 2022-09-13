@@ -60,3 +60,8 @@ function checkStack(id){
             return false;
         }
 } 
+
+function getUser(key){ // allUsers
+    let allUsers = JSON.parse(localStorage.getItem(key)) || [];
+    return allUsers;
+}

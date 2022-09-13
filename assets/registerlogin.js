@@ -12,11 +12,11 @@ class RegisterLogin {
         if(this.setRegister()===true){
             this.message = "Registration Successful";
             return true;
-        } 
+        }
         return false;
     }
     setRegister(){
-        let allUsers = JSON.parse(localStorage.getItem('allUsers')) || [];
+        let allUsers = getUser('allUsers');
         let totalUsers = this.getLastUserId();
 
         if(this.checkUsernameExist()==true){
@@ -44,22 +44,17 @@ class RegisterLogin {
         }
     }
     getLastUserId(){
-        let allUsers = JSON.parse(localStorage.getItem('allUsers')) || [];
+        let allUsers = getUser('allUsers');
             if(allUsers.length>0){
                 return allUsers[allUsers.length-1]['id'];
             }else{
                 return 0;
             }
     }
+
     checkUsernameExist(){
-        let allUsers = JSON.parse(localStorage.getItem('allUsers')) || []; 
-        let newUserCHeck = allUsers.map((element) => {
-            if(element['username']==this.username ){ 
-                   return element['id'];
-                 //  break;
-            }
-        });
-        let newArr = parseInt(newUserCHeck.join(' ').trim()); 
+        let allUsers = getUser('allUsers');
+        let newArr = allUsers.some( user=> user.username == this.username  ); 
          if(newArr){
             return true;
          }else{ 
@@ -73,27 +68,22 @@ class RegisterLogin {
             this.message = "Unable to set Active User";
             return false;
         }
-    }
-    userLoginCheck(){
-        let allUsers = JSON.parse(localStorage.getItem('allUsers')) || []; 
-        let newUserCHeck = allUsers.map((element) => {
-            if(element['username']==this.username && element['password']==this.password ){ 
-                   return element['id'];
-            }
-        });
-        let newArr = parseInt(newUserCHeck.join(' ').trim()); 
-         if(newArr){
-            this.setActiveUser(newArr);
-            return true;
-         }
-         return false 
-    }
+    } 
     findUser(){
-        let allUsers = JSON.parse(localStorage.getItem('allUsers')) || []; 
+        let allUsers = getUser('allUsers');
         let check = allUsers.some( (user=> user.username == this.username )
             && (pass => pass.password == this.password)
         );
-        alert(check)
+        if(check){
+            let newArr = allUsers.find( (user=> user.username == this.username )
+            && (pass => pass.password == this.password));
+            if(newArr){
+               this.setActiveUser(newArr['id']);
+               return true;
+            } 
+            return false;
+        }
+        return false;
     }
     userLogin(){
         let authCheck = new AuthUser();
@@ -108,6 +98,6 @@ class RegisterLogin {
                 return false;
                 
             }
-    }
-    
+    } 
+
 }

@@ -26,32 +26,64 @@
 
     <section class="container">
         <h1>Welcome <span id="fullname" class="text-primary"></span></h1>
-        <h2>Your Stack: <span id="stack" class="text-primary"></span></h2>
+        <h4>Change your password</h4>
+    </section>
+
+    <section class="container mt-4">
+        <form action="" id="profileEdit">
+            <div class="form-group">
+                <label for="">Full Name:</label>
+                <input type="text" class="form-control" id="fullnames"  onkeyup="return checkFullName('fullnames')">
+                <div></div>
+            </div>
+            <div class="form-group mt-2">
+                <label for="">Password:</label>
+                <input type="text" class="form-control" id="passwords" onkeyup="checkEmptyInput('passwords')">
+                <div></div>
+            </div>
+            <div class="form-group mt-2">
+                <label for="">Stack:</label>
+                <input type="text" class="form-control" id="stacks" onkeyup="return checkStack('stacks')" >
+                <input type="text" class="form-control" id="Auth"  >
+                <div></div>
+            </div>
+            <div class="form-group mt-3">
+                <input type="submit" class="form-control btn btn-success"  >
+                <div></div>
+            </div>
+
+        </form>
     </section>
 
     <script src="../assets/script.js"></script>
     <script src="../assets/auth-check.js"></script>
-    <script> 
-        let AuthUsers = new AuthUser();
-        if(AuthUsers.checkActiveUser()){
-            document.getElementById("fullname").innerHTML= AuthUsers.getUserData('fullName');
-            document.getElementById("stack").innerHTML= AuthUsers.getUserData('stack');
-            
+    <script src="../assets/userChecks.js"></script> 
+    <script > 
+let profileEdit = document.querySelector("#profileEdit");
+profileEdit.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    let password = document.querySelector("#password").value;
+    let fullname = document.querySelector("#fullname").value;
+    let stack = document.querySelector("#stack").value;
+     
+        if(checkEmptyInput('password')==true && checkFullName('fullname')===true && checkStack('stack')===true){
+
         }else{
-            setTimeout(()=>{
-                window.location.href='../index.html';
-            }, 200);
+          checkEmptyInput('password')
+          checkUsername('username')
+          checkFullName('fullname')
+          checkStack('stack')
         }
-        function logout(){
-            if(confirm("Are you sure you want to log out?")){
-                if(AuthUsers.logout()===true){
-                    setTimeout(()=>{
-                        window.location.href='../index.html';
-                    }, 2000);
-                    alert('Successfully Logout');
-                }
-            }
-        }
-    </script>
+
+});
+
+let AuthUserTech = new AuthUser();
+if(AuthUsers.checkActiveUser()){
+    document.getElementById("fullnames").value  = AuthUserTech.getUserData('fullName');
+    document.getElementById("stacks").value     = AuthUserTech.getUserData('stack');
+    document.getElementById("passwords").value  = AuthUserTech.getUserData('password');
+    document.getElementById("Auth").value  = "g";
+}
+    </script> 
 </body>
 </html>

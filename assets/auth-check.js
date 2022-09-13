@@ -4,18 +4,18 @@ class AuthUser{
     }
 
     checkActiveUser(){
-        let activeUser = localStorage.getItem('activeUserId') || '';
-        if(activeUser==undefined || activeUser==''){
-            localStorage.removeItem('activeUserId'); 
-            return false;
-        }else{
+        let activeUser = getUser('activeUserId'); 
+        if(parseInt(activeUser)){
             this.id=activeUser
             return true;
+        }else{
+            localStorage.removeItem('activeUserId'); 
+            return false;
         }
     }
     
     getUserData(data){
-        let activeUser = JSON.parse(localStorage.getItem('allUsers')) || [];
+        let activeUser = getUser('allUsers');;
         let teet = ''
         for(let i=0;i<activeUser.length;i++){
             if(activeUser[i]['id']==this.id){ 

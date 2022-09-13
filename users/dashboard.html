@@ -31,27 +31,9 @@
 
     <script src="../assets/script.js"></script>
     <script src="../assets/auth-check.js"></script>
+    <script src="../assets/userChecks.js"></script>
     <script> 
-        let AuthUsers = new AuthUser();
-        if(AuthUsers.checkActiveUser()){
-            document.getElementById("fullname").innerHTML= AuthUsers.getUserData('fullName');
-            document.getElementById("stack").innerHTML= AuthUsers.getUserData('stack');
-            
-        }else{
-            setTimeout(()=>{
-                window.location.href='../index.html';
-            }, 200);
-        }
-        function logout(){
-            if(confirm("Are you sure you want to log out?")){
-                if(AuthUsers.logout()===true){
-                    setTimeout(()=>{
-                        window.location.href='../index.html';
-                    }, 2000);
-                    alert('Successfully Logout');
-                }
-            }
-        }
+       
     </script>
 </body>
 </html>
