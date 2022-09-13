@@ -12,8 +12,7 @@ class RegisterLogin {
         if(this.setRegister()===true){
             this.message = "Registration Successful";
             return true;
-        }
-        this.message = this.getMessage()+ "Error Registering User";
+        } 
         return false;
     }
     setRegister(){
@@ -37,9 +36,10 @@ class RegisterLogin {
 
             let newUsers = JSON.stringify(allUsers);
             localStorage.setItem('allUsers', newUsers);
-                this.setActiveUser(totalUsers+1);
-                displayMsg('feedback', `<span class='text-success'>User Registered Successfully</span>`);
-                this.userLogin();
+                this.setActiveUser(totalUsers+1); 
+                if(this.userLogin()){
+                    displayMsg('feedback', "<div class='alert alert-success py-1'>Registration Successful</div>");
+                };
             return true;
         }
     }
@@ -88,19 +88,26 @@ class RegisterLogin {
          }
          return false 
     }
+    findUser(){
+        let allUsers = JSON.parse(localStorage.getItem('allUsers')) || []; 
+        let check = allUsers.some( (user=> user.username == this.username )
+            && (pass => pass.password == this.password)
+        );
+        alert(check)
+    }
     userLogin(){
         let authCheck = new AuthUser();
            if(authCheck.checkActiveUser()){
                 setTimeout(()=>{
                     window.location.href='users/dashboard.html';
                 }, 2000);
-                return displayMsg('feedback', "<div class='alert alert-success py-1'>Login Successfully</div>");
-                
+                return true;
             }else{
                 this.message = "Wrong User";
-                return window.location.href= 'index.html';
+                window.location.href= 'index.html';
+                return false;
                 
             }
     }
-
+    
 }

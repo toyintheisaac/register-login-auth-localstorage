@@ -46,6 +46,7 @@ loginForm.addEventListener('submit',(e)=>{
 
     if(checkEmptyInput('password')==true && checkUsername('username')===true ){ 
       let loginUser = new RegisterLogin(username, password);
+            loginUser.findUser();
         if(loginUser.userLoginCheck()==true){
           setTimeout(()=>{
               window.location.href='users/dashboard.html';
@@ -54,7 +55,6 @@ loginForm.addEventListener('submit',(e)=>{
         }else{
           displayMsg('feedback', "<div class='alert alert-danger py-1'>Wrong login details</div>");
         }
-
     }else{
       checkEmptyInput('password')
       checkUsername('username') 
