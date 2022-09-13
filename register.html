@@ -14,35 +14,62 @@
 <body class="bg-secondary">
     
     <div class="container mt-5">
-        <div class="d-flex justify-content-center"> 
-            <form   class="bg-light p-5" >
+        <div class="d-flex justify-content-center">
+            <form id="registerForm"  class="bg-light p-5" >
                 <div class="mb-3 mt-3">
-                  <label for="uname" class="form-label">Username:</label>
-                  <input type="text" class="form-control" id="uname" placeholder="Enter username" name="uname" >
-                  <div class="feedback"></div> 
+                  <label for="username" class="form-label">Username:</label>
+                  <input type="text" class="form-control" id="username" placeholder="Enter username" name="username" onkeyup="return checkUsername('username')">
+                  <div ></div> 
                 </div>
                 <div class="mb-3">
-                  <label for="pwd" class="form-label">Password:</label>
-                  <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd"  >
-                  <div class="feedback"></div>
+                  <label for="password" class="form-label">Password:</label>
+                  <input type="password" class="form-control" id="password" placeholder="Enter password" name="password"  >
+                  <div ></div>
                 </div>
                 <div class="mb-3 mt-3">
                   <label for="fullname" class="form-label">Full Name:</label>
-                  <input type="text" class="form-control" id="fullname" placeholder="Enter username" name="fullname" >
-                  <div class="feedback"></div>
+                  <input type="text" class="form-control" id="fullname" placeholder="Enter Full Name" name="fullname"  onkeyup="return checkFullName('fullname')">
+                  <div ></div>
                 </div>
                 <div class="mb-3 mt-3">
                   <label for="stack" class="form-label">Stack:</label>
-                  <input type="text" class="form-control" id="stack" placeholder="Enter username" name="stack" >
-                  <div class="feedback"></div>
+                  <input type="text" class="form-control" id="stack" placeholder="Enter Stack" name="stack" onkeyup="return checkStack('stack')" >
+                  <div ></div>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <a href="users/dashboard.html" class="btn btn-primary">Submit</a>
+                <button type="submit" class="btn btn-primary">Submit</button> 
+                <div id="feedback"></div>
                 <p class="d-block mt-2"><a href="index.html" class="text-decoration-none">Already have an Account ?</a> </p>
               </form>
         </div>
     </div>
 
 <script src="assets/script.js"></script>
+<script src="assets/registerlogin.js"></script>
+<script>
+  
+  let registerUser = new RegisterLogin('isaac', 'password'); 
+      registerUser.getLastUserId();
+
+let registerForm = document.querySelector("#registerForm");
+    registerForm.addEventListener('submit', (e)=>{
+        e.preventDefault();
+        let username = document.querySelector("#username").value;
+        let password = document.querySelector("#password").value;
+        let fullname = document.querySelector("#fullname").value;
+        let stack = document.querySelector("#stack").value;
+         
+            if(checkEmptyInput('password')==true && checkUsername('username')===true && checkFullName('fullname')===true && checkStack('stack')===true){
+               let registerUser = new RegisterLogin(username, password);
+               registerUser.registerUser(fullname, stack);  
+
+            }else{
+              checkEmptyInput('password')
+              checkUsername('username')
+              checkFullName('fullname')
+              checkStack('stack')
+            }
+
+    });
+</script>
 </body>
 </html>
