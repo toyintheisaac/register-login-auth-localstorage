@@ -17,8 +17,8 @@
             <ul class="d-flex justify-content-between py-3 ps-0 text-light">
                 <li class="list-group-item"><a href="dashboard.html" class="link-light text-decoration-none">Dashboard</a></li>
                 <div class="left d-flex justify-content-between "> 
-                    <li class="list-group-item"><a href="profile.html" class="link-light text-decoration-none me-2">Profile</a></li>
-                    <li class="list-group-item"><a href="change-password.html" class="link-light text-decoration-none me-2">Change Password</a></li>
+                    <li class="list-group-item"><a href="profile.html" class="link-light text-decoration-none me-3">Profile</a></li>
+                    <li class="list-group-item"><a href="change-password.html" class="link-light text-decoration-none me-3">Password</a></li>
                     <li class="list-group-item" onclick="logout()">Logout</li>
                 </div>
             </ul>
@@ -31,7 +31,7 @@
     </section>
 
     <section class="container mt-4">
-        <form action="" id="profileEdit">
+        <form action="" id="profileEdit" >
             <div class="form-group">
                 <label for="">Full Name:</label>
                 <input type="text" class="form-control" id="fullnames"  onkeyup="return checkFullName('fullnames')">
@@ -43,7 +43,7 @@
                 <div></div>
             </div>
             <div class="form-group mt-3">
-                <input type="submit" class="form-control btn btn-success"  >
+                <input type="submit" class="form-control btn btn-success" value="Update " >
                 <div></div>
             </div>
 
@@ -73,8 +73,7 @@ profileEdit.addEventListener('submit', (e)=>{
 });
 
 setValueData("fullnames", 'fullName');
-setValueData("stacks", 'stack');
-setValueData("passwords", 'passwords');
+setValueData("stacks", 'stack'); 
  
     </script> 
 </body>
