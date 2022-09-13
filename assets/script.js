@@ -23,7 +23,7 @@ function displayMsg(elementID, errorMsg){
         // clear message after 2 sec 
            setTimeout(()=>{
                 message.innerHTML = '';
-            },3000);
+            },2500);
     return true;
 }
 

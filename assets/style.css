@@ -1,0 +1,13 @@
+a.navBtn{
+    display: block;
+    color: #fff;
+}
+.navBtn{
+    text-decoration: none;
+    padding: 7px;
+}
+.navBtn:hover{
+    color: blue;
+    background-color: #fff;
+    border-radius: 8px;
+}

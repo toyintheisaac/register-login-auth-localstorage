@@ -7,7 +7,6 @@ if(AuthUsers.checkActiveUser()){
     function setValueData(elementID, data){
         return document.getElementById(elementID).value= AuthUsers.getUserData(data);
     }
-    
 }else{
     setTimeout(()=>{
         window.location.href='../index.html';
