@@ -1,7 +1,12 @@
 let AuthUsers = new AuthUser();
 if(AuthUsers.checkActiveUser()){
-    document.getElementById("fullname").innerHTML= AuthUsers.getUserData('fullName');
-    document.getElementById("stack").innerHTML= AuthUsers.getUserData('stack');
+
+    function setInnerHtmlData(elementID, data){
+       return document.getElementById(elementID).innerHTML= AuthUsers.getUserData(data);
+    }
+    function setValueData(elementID, data){
+        return document.getElementById(elementID).value= AuthUsers.getUserData(data);
+    }
     
 }else{
     setTimeout(()=>{
