@@ -10,7 +10,7 @@ if(AuthUsers.checkActiveUser()){
 }else{
     setTimeout(()=>{
         window.location.href='../index.html';
-    }, 200);
+    }, 10);
 }
 
 function logout(){

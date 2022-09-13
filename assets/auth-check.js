@@ -20,21 +20,19 @@ class AuthUser{
         return users[data];
     }
     logout(){
-        localStorage.removeItem('activeUserId');
-        return true; 
+        if(localStorage.removeItem('activeUserId')) return true;
+        return false;         
     }
-    updateProfile(fullname, stack){
+    updateField(data, value){
         let allUsers = getUser('allUsers'); 
         let usersIndex = allUsers.findIndex(user=>user.id ==this.id);
 
-         allUsers[usersIndex]['fullName'] = fullname;
-         allUsers[usersIndex]['stack']     =stack;
- 
+         allUsers[usersIndex][data] = value;
+
             let newUsers = JSON.stringify(allUsers);
             localStorage.setItem('allUsers', newUsers);
             return true;
-    }
-
+    }  
 
 
 

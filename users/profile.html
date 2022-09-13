@@ -59,20 +59,19 @@
 let profileEdit = document.querySelector("#profileEdit");
 profileEdit.addEventListener('submit', (e)=>{
     e.preventDefault();
-    let fullname = document.querySelector("#fullnames").value;
+    let fullName = document.querySelector("#fullnames").value;
     let stack = document.querySelector("#stacks").value;
     
         if(checkFullName('fullnames')===true && checkStack('stacks')===true){
-
-            if(AuthUsers.updateProfile(fullname, stack)){
+            if(AuthUsers.updateField('fullName', fullName) && AuthUsers.updateField('stack', stack)){
                 alert("User Updated");
                 window.location.href="";
             }else{
                 alert("Error occurred while updating user");
             }
         }else{
-          checkFullName('fullnames')
-          checkStack('stacks')
+            checkFullName('fullnames')
+            checkStack('stacks')
         }
 });
 
