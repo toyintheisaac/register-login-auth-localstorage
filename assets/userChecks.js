@@ -18,7 +18,7 @@ function logout(){
         if(AuthUsers.logout()===true){
             setTimeout(()=>{
                 window.location.href='../index.html';
-            }, 100);
+            }, 10);
             alert('Successfully Logout');
         }
     }
