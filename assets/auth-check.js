@@ -13,7 +13,7 @@ class AuthUser{
             return false;
         }
     }
-    
+
     getUserData(data){
         let activeUser = getUser('allUsers');
         let users = activeUser.find(user=>user.id ==this.id);
@@ -32,7 +32,7 @@ class AuthUser{
             let newUsers = JSON.stringify(allUsers);
             localStorage.setItem('allUsers', newUsers);
             return true;
-    }  
+    }
 
 
 

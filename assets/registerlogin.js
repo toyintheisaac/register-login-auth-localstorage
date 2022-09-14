@@ -90,7 +90,7 @@ class RegisterLogin {
            if(authCheck.checkActiveUser()){
                 setTimeout(()=>{
                     window.location.href='users/dashboard.html';
-                }, 2000);
+                }, 1500);
                 return true;
             }else{
                 this.message = "Wrong User";
